@@ -1,0 +1,22 @@
+{
+  "name": "proyecto-gestion-producto",
+  "version": "1.0.0",
+  "description": "Proyecto de gestión de producto para la entrega de trabajo de curso Node.js",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxiblancovillar/proyecto-gestion-producto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxiblancovillar/proyecto-gestion-producto/issues"
+  },
+  "homepage": "https://github.com/maxiblancovillar/proyecto-gestion-producto#readme"
+}
