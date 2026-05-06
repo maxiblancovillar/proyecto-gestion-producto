@@ -27,7 +27,7 @@ if(args.length > 0){
         break;
 
     case "POST":
-        data = await agregarProducto(metodoMayuscula, path, param);
+        data = await agregarProducto(metodoMayuscula, path, ...param);
         console.log("Se agrego el Producto: ", data);
         break;
 
@@ -71,10 +71,10 @@ async function obtenerProducto(metodo, parametro) {
     }
 }
 
-async function agregarProducto(metodo , ruta , producto) {
+async function agregarProducto(metodo , ruta , titulo, precio, categoria) {
 
     try{
-        const prod = {title: producto[0], price: producto[1], category: producto[2]};
+        const prod = {title: titulo, price: precio, category: categoria};
         
         const response = await fetch(`${BASE_URL}/${ruta}`, {
         method: metodo, //POST
