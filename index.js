@@ -1,4 +1,4 @@
-const BASE_URL = "https://fakestoreapi.com/";
+const BASE_URL = "https://fakestoreapi.com";
 
 console.log("Inicio del Programa...");
 
@@ -7,9 +7,10 @@ const args = process.argv.slice(2);
 
 const[metodo, path, ...param] = args;
 
-const metodoMayuscula = metodo.toUpperCase();
 
 if(args.length > 0){
+
+    const metodoMayuscula = metodo.toUpperCase();
 
     console.log(`El metodo ingresado es: ${metodoMayuscula}`);
     console.log(`La ruta es: ${path}`);
@@ -27,17 +28,17 @@ if(args.length > 0){
 
     case "POST":
         data = await agregarProducto(metodoMayuscula, path, param);
-        console.log("Se agrego: ", data);
+        console.log("Se agrego el Producto: ", data);
         break;
 
     case "DELETE":
         
         data = await eliminarProducto(metodoMayuscula, path)
-        console.log("Prodcuto eliminado: ", data);
+        console.log("Producto eliminado: ", data);
         break;
 
     default:
-        console.log("Método no reconocido. Use GET, POST o DELET.");
+        console.log("Método no reconocido. Use GET, POST o DELETE.");
         break;
 }
     
@@ -55,17 +56,14 @@ async function obtenerProducto(metodo, parametro) {
             method: metodo //GET
         })
         
-        if (response.status == 200){
+        if (response.ok){
             let data = await response.json();
             return data;
 
-        } else if (response.status == 201){
-            let data = await response.json();
-            return data;
-
-        }else{
-            console.log(response.status);
+        } else{
+            console.log("Error en la petición. Estado:", response.status);
         }
+
     }catch(error){
         console.log(error);
     }finally{
@@ -84,13 +82,13 @@ async function agregarProducto(metodo , ruta , producto) {
         body: JSON.stringify(prod)
         })
 
-        if (response.status == 201){
+        if (response.ok){
             console.log("Producto agregado con exito");
             let data = await response.json();
             return data;
 
         }else{
-            console.log(response.status);
+            console.log("Error en la petición. Estado:", response.status);
         }
     }catch(error){
         console.log(error);
@@ -107,13 +105,13 @@ async function eliminarProducto(metodo, parametro) {
         method: metodo, //DELET
         })
 
-        if (response.status == 200){
+        if (response.ok){
             let data = await response.json();
             console.log(`Producto con ID: ${data.id} se elimino con EXITO`);
             return data;
 
         }else{
-            console.log(response.status);
+            console.log("Error en la petición. Estado:", response.status);
         }
     }catch(error){
         console.log(error);
